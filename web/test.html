@@ -1,0 +1,173 @@
+<html>
+<head>
+
+<!-- Meta Tag for Loading Page in Zoom mode as per device screen size -->
+<meta name="viewport" content="initial-scale=1.0, user-scalable=yes, width=device-width" />
+
+<!-- TItle of the WebPage -->
+<title>FlipCoin</title>
+
+<script type="text/javascript">
+
+	//Function for Checking Random number and changing layout views as per result;
+	//This will be used when heads is clicked
+	var evenCheck = function() {
+		//Hiding waiting screen
+		document.getElementById('waiting').style.display = "none";
+		
+		//Setting default input as heads/even as this function is invoked when heads is pressed
+		var input = "even";
+		
+		//Generating a random number between 1 - 10
+		var number = Math.floor((Math.random() * 10) + 1); 
+		
+		var result;
+		/**
+		* Checking the random number
+		* if the number is odd then its treated as tails
+		* And Result will be lost
+		* else if the number is even its treated as heads 
+		* result will be won
+		**/
+		if(number % 2 == 0) {
+			result = "even";
+		} else {
+			result = "odd";
+		}
+		
+		/**
+		* Comparing generate number result with input value;
+		* If both are heads/even 
+		* then showing won layout
+		* else showing lost layout
+		**/
+		if(input.localeCompare(result) == 0){
+			document.getElementById('won').style.display = "block";
+		} else {
+			document.getElementById('lost').style.display = "block";
+		}	
+		
+	}
+
+	
+	/**
+	* Function invoked on click of Heads button
+	**/
+	function generateRandomEven() {
+		//hiding Welcome layout
+		document.getElementById('welcome').style.display = "none";
+		//showing waiting layout
+		document.getElementById('waiting').style.display = "block";
+		//starting evenCheck after 1 second
+		setTimeout(evenCheck, 1000);
+	}
+	
+	
+	//Function for Checking Random number and changing layout views as per result;
+	//This will be used when tails is clicked
+	var oddCheck = function(){
+		//Setting default input as heads/even as this function is invoked when heads is pressed
+		document.getElementById('waiting').style.display = "none";
+		
+		//Setting default input as heads/even as this function is invoked when heads is pressed
+		var input = "odd";
+		
+		//Generating random number between 1-10
+		var number = Math.floor((Math.random() * 10) + 1); 
+		var result;
+		
+		/**
+		* Checking the random number
+		* if the number is odd then its treated as tails
+		* And Result will be won
+		* else if the number is even its treated as heads 
+		* result will be lost
+		**/
+		if(number % 2 == 0) {
+			result = "even";
+		} else {
+			result = "odd";
+		}
+		
+		/**
+		* Comparing generate number result with input value;
+		* If both are heads/even 
+		* then showing won layout
+		* else showing lost layout
+		**/
+		if(input.localeCompare(result) == 0){
+			document.getElementById('won').style.display = "block";
+		} else {
+			document.getElementById('lost').style.display = "block";
+		}	
+	}
+	
+	/**
+	* Function invoked on click of Tails button
+	**/
+	function generateRandomOdd() {
+		//Hiding welcome view
+		document.getElementById('welcome').style.display = "none";
+		//Showing waiting view
+		document.getElementById('waiting').style.display = "block";
+		//starting oddCheck after 1 second
+		setTimeout(oddCheck, 1000);	
+	}
+	
+
+	
+	
+</script>
+
+</head>
+<body style="margin-top:100px;">
+	<center>
+		<!-- Welcome Page View -->
+		<div name="welcome" id="welcome">
+			<h1>Welcome to Tossing</h1>
+			<h3>Select your choice</h3>
+			<table>
+				<tr>
+					<!-- Heads Image with Click Listener -->
+					<td style="padding:0 15px 0 15px; width:100px;height:100px;" align="center"><img onclick='generateRandomEven();' src="images/yes.png"></td>
+					<!-- Tails Image with Click Listener -->
+					<td style="padding:0 15px 0 15px; width:100px;height:100px;" align="center"><img onclick='generateRandomOdd();' src="images/no.png"></td>
+				</tr>		
+				<tr>
+					<td style="padding:5px 15px 5px 15px" align="center">Heads</td>
+					<td style="padding:5px 15px 5px 15px" align="center">Tails</td>
+				</tr>
+			</table>
+		</div>
+		
+		<!-- Waiting Page View -->
+		<div name="waiting" id="waiting" style="display:none;">
+			<img style="width:100px;height:100px;" src="images/waiting.png">
+			<br>Please wait...
+		</div>
+		
+		<!-- Won Page View -->
+		<div name="won" id="won" style="display:none;">
+			Yippee!!!
+			<br><br><img style="width:110px;height:95px;" src="images/won.png">
+			<br><br>
+			Congrats you won!!!
+			<br><br>
+			<!-- Reset Button!! Just reloads the page -->
+			<button id="reset" name="reset" onClick="window.location.reload()" style="background-color:blue;color:white;">RESET</button>
+		</div>
+		
+		<!-- Lost Page View -->
+		<div name="lost" id="lost" style="display:none;">
+			oOps!!!
+			<br><br><img style="width:110px;height:120px;" src="images/ops.png">
+			<br><br>
+			You Lost!!! Try again.
+			<br><br>
+			<!-- Reset Button!! Just reloads the page -->
+			<button id="reset" name="reset" onClick="window.location.reload()" style="background-color:blue;color:white;">RESET</button>
+		</div>
+		
+	</center>
+</body>
+</html>
